@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import HomePage from '@/page/Home/Home';
-import Header from '@/components/shared/Header';
-import Glow from '@/components/shared/Glow';
-import Footer from '@/components/shared/Footer';
+import HomePage from './page/Home/Home';
+import Header from './components/shared/Header';
+import Glow from './components/shared/Glow';
+import Footer from './components/shared/Footer';
 import DownloadPage from './page/download/Download';
-import { pages } from '@/db/pages';
+import { pages } from './db/pages';
 
 const App = () => {
   const [path, setPath] = useState(pages[0].url);
