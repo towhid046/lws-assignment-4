@@ -1,8 +1,8 @@
 import React from 'react'
-import WelcomeMessage from './../../components/home/WelcomeMessage';
-import PromptInput from './../../components/home/PromptInput';
-import SettingsPanel from './../../components/home/SettingsPanel';
-import ResultImages from './../../components/home/ResultImages';
+import WelcomeMessage from '@/components/home/WelcomeMessage';
+import PromptInput from '@/components/home/PromptInput';
+import SettingsPanel from '@/components/home/SettingsPanel';
+import ResultImages from '@/components/home/ResultImages';
 
 const HomePage = () => {
   return (
