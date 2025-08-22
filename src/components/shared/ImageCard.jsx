@@ -1,9 +1,25 @@
 import React from 'react'
 
-const ImageCard = ({image}) => {
+const ImageCard = ({ image }) => {
+
+    const downloadImage = async (url, filename = "ai-image.jpg") => {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        URL.revokeObjectURL(blobUrl); // cleanup
+    };
+
     return (
         <div className="image-card rounded-xl overflow-hidden cursor-pointer relative">
-            <div className="absolute bottom-2 right-2  p-1 ">
+            <div onClick={()=>downloadImage(image)}  className="absolute bottom-2 right-2  p-1 ">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width={24}
@@ -31,4 +47,4 @@ const ImageCard = ({image}) => {
     )
 }
 
-export default ImageCard
+export default ImageCard;

@@ -1,6 +1,8 @@
 import React from 'react'
+import usePollination from '../../hooks/usePollination'
 
-const SettingsPanel = () => {
+const SettingsPanel = ({inputState, setInputState}) => {
+    const { models } = usePollination()
     return (
         <div className="border border-zinc-700/70 mb-6 rounded-lg p-4">
             <div className="flex items-center justify-between mb-4">
@@ -16,15 +18,16 @@ const SettingsPanel = () => {
                         Model
                     </label>
                     <select
+                        onChange={(e) => setInputState(prev => ({ ...prev, model: e.target.value }))}
+                        value={inputState.model}
                         id="model"
                         className="w-full px-3 py-2 bg-zinc-900/10 border border-zinc-700/70 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     >
-                        <option className="bg-zinc-900" value="flux" selected="">
-                            Flux
-                        </option>
-                        <option className="bg-zinc-900" value="turbo">
-                            Turbo
-                        </option>
+                        {models?.map(model => (
+                            <option className="bg-zinc-900" value={model} selected="">
+                                {model}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 {/* Seed Input : Auto Generated, readonly for user */}
@@ -54,7 +57,8 @@ const SettingsPanel = () => {
                     <input
                         type="number"
                         id="width"
-                        defaultValue={1024}
+                        onChange={(e) => setInputState(prev => ({ ...prev, width: e.target.value }))}
+                        value={inputState.width}
                         className="w-full bg-zinc-900/10 px-3 py-2 border border-zinc-700/70 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     />
                 </div>
@@ -67,9 +71,10 @@ const SettingsPanel = () => {
                         Height
                     </label>
                     <input
+                        onChange={(e) => setInputState(prev => ({ ...prev, height: e.target.value }))}
+                        value={inputState.height}
                         type="number"
                         id="height"
-                        defaultValue={1024}
                         className="w-full bg-zinc-900/10 px-3 py-2 border border-zinc-700/70 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     />
                 </div>
