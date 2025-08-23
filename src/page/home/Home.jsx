@@ -7,7 +7,7 @@ import ResultImages from '@/components/home/ResultImages';
 const HomePage = () => {
   const [inputState, setInputState] = useState({
     prompt: '',
-    seed: 'Random',
+    ratio: '1:1',
     model: '',
     width: 1024,
     height: 1024,

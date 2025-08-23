@@ -1,8 +1,21 @@
 import React from 'react'
 import usePollination from '../../hooks/usePollination'
 
-const SettingsPanel = ({inputState, setInputState}) => {
+const ratios = ['1:1', '16:9', '4:3', '3:2']
+
+const SettingsPanel = ({ inputState, setInputState }) => {
     const { models } = usePollination()
+
+    const handleRatioClick = (ratio) => {
+        setInputState(prev => ({
+            ...prev,
+            ratio,
+            height: ratio === '1:1' ? '1024'
+                : ratio === '16:9' ? '576'
+                    : ratio === '4:3' ? '768' : '683',
+        }))
+    }
+
     return (
         <div className="border border-zinc-700/70 mb-6 rounded-lg p-4">
             <div className="flex items-center justify-between mb-4">
@@ -84,19 +97,17 @@ const SettingsPanel = ({inputState, setInputState}) => {
                         Aspect Ratio Presets
                     </label>
                     <div className="flex flex-wrap gap-2">
-                        <button className="bg-zinc-900/10  px-3 py-3 text-xs  hover:bg-zinc-800 rounded transition-colors">
-                            1:1
-                        </button>
-                        <button className="bg-zinc-900/10  px-3 py-3 text-xs  hover:bg-zinc-800 rounded transition-colors">
-                            16:9
-                        </button>
-                        <button className="bg-zinc-900/10  px-3 py-3 text-xs  hover:bg-zinc-800 rounded transition-colors">
-                            4:3
-                        </button>
-                        <button className="bg-zinc-900/10  px-3 py-3 text-xs  hover:bg-zinc-800 rounded transition-colors">
-                            3:2
-                        </button>
+                        {ratios.map((ratio) => (
+                            <button
+                                key={ratio}
+                                onClick={() => handleRatioClick(ratio)}
+                                className={` px-3 py-2 text-xs rounded transition-colors ${ratio===inputState.ratio ? 'bg-zinc-800' :'hover:bg-zinc-800 bg-zinc-900/10'}`}
+                            >
+                                {ratio}
+                            </button>
+                        ))}
                     </div>
+                        
                 </div>
                 {/* No Logo Toggle */}
             </div>
