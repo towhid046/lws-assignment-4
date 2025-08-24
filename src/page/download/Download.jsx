@@ -1,23 +1,16 @@
 import React from 'react'
-import aiImage1 from '@/assets/images/ai-image-1.jpeg'
-import aiImage2 from '@/assets/images/ai-image-2.jpeg'
-import aiImage3 from '@/assets/images/ai-image-3.jpeg'
-import aiImage4 from '@/assets/images/ai-image-4.jpeg'
-import aiImage5 from '@/assets/images/ai-image-5.jpeg'
-import aiImage6 from '@/assets/images/ai-image-6.jpeg'
+// import aiImage1 from '@/assets/images/ai-image-1.jpeg'
+// import aiImage2 from '@/assets/images/ai-image-2.jpeg'
+// import aiImage3 from '@/assets/images/ai-image-3.jpeg'
+// import aiImage4 from '@/assets/images/ai-image-4.jpeg'
+// import aiImage5 from '@/assets/images/ai-image-5.jpeg'
+// import aiImage6 from '@/assets/images/ai-image-6.jpeg'
 import ImageCard from '@/components/shared/ImageCard';
 
-const images = [
-  aiImage1,
-  aiImage2,
-  aiImage3,
-  aiImage4,
-  aiImage5,
-  aiImage6
-
-]
 
 const DownloadPage = () => {
+  const images = localStorage.getItem('downloads') ? JSON.parse(localStorage.getItem('downloads')) : []
+
   return (
     <main className="relative z-10">
       {/* Welcome Message */}

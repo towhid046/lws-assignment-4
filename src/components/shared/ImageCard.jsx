@@ -15,6 +15,12 @@ const ImageCard = ({ image }) => {
         link.remove();
 
         URL.revokeObjectURL(blobUrl); // cleanup
+        
+        const existDownloads = localStorage.getItem('downloads') ? JSON.parse(localStorage.getItem('downloads')) : [];
+        if(!existDownloads.includes(url)) {
+            existDownloads.push(url);
+            localStorage.setItem('downloads', JSON.stringify(existDownloads));
+        }
     };
 
     return (
